@@ -91,36 +91,6 @@ fun HomeScreen(onFabClick: () -> Unit) {
     )
 }
 
-@Composable
-fun FocusScreen() {
-
-    var seconds by remember { mutableStateOf(0) }
-    var minutes by remember { mutableStateOf(24) }
-
-    LaunchedEffect(Unit) {
-        val timer = object : CountDownTimer(minutes * 60 * 1000L, 1000L) {
-            override fun onTick(millisUntilFinished: Long) {
-                seconds = (millisUntilFinished / 1000L).toInt() % 60
-            }
-
-            override fun onFinish() {
-                // タイマー終了時の処理
-            }
-        }
-        timer.start()
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = "%02d:%02d".format(minutes, seconds),
-            modifier = Modifier.align(Alignment.Center),
-            fontSize = 50.sp,
-            textAlign = TextAlign.Center,
-            )
-    }
-
-}
-
 
 @Preview(showBackground = true)
 @Composable
