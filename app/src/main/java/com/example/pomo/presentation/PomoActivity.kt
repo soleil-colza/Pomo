@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,7 +46,7 @@ class PomoActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    FocusScreen()
+                    Modal()
                 }
             }
         }
@@ -87,36 +89,6 @@ fun HomeScreen(onFabClick: () -> Unit) {
         }
         }
     )
-}
-
-@Composable
-fun FocusScreen() {
-
-    var seconds by remember { mutableStateOf(0) }
-    var minutes by remember { mutableStateOf(24) }
-
-    LaunchedEffect(Unit) {
-        val timer = object : CountDownTimer(minutes * 60 * 1000L, 1000L) {
-            override fun onTick(millisUntilFinished: Long) {
-                seconds = (millisUntilFinished / 1000L).toInt() % 60
-            }
-
-            override fun onFinish() {
-                // タイマー終了時の処理
-            }
-        }
-        timer.start()
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = "%02d:%02d".format(minutes, seconds),
-            modifier = Modifier.align(Alignment.Center),
-            fontSize = 50.sp,
-            textAlign = TextAlign.Center,
-            )
-    }
-
 }
 
 
