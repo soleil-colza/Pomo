@@ -108,12 +108,13 @@ fun FocusScreen() {
         timer.start()
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
         Text(
             text = "%02d:%02d".format(minutes, seconds),
+            modifier = Modifier.align(Alignment.Center),
             fontSize = 50.sp,
-            textAlign = TextAlign.Center
-        )
+            textAlign = TextAlign.Center,
+            )
     }
 
 }
